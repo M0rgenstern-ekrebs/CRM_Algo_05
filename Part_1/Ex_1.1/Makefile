@@ -1,10 +1,10 @@
 MAIN = App
 OUT_DIR = out
 
-SRC = $(shell find src -name "*.java")
+SOURCES = $(shell find src -name "*.java")
 JFLAGS = -Xlint:all -Werror
 
-all: $(OUT_DIR)/classes
+all: clear $(OUT_DIR)/classes
 
 $(OUT_DIR)/classes:
 	mkdir -p $(OUT_DIR)
@@ -15,3 +15,6 @@ run: all
 
 clean:
 	rm -rf $(OUT_DIR)
+
+clear:
+	clear

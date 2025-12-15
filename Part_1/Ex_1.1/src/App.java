@@ -23,15 +23,38 @@ class App
 
 	public static void main(String Args[])
 	{
+		String launch_cmd;
 		double n1;
 		double n2;
 		double m;
-		Scanner sc = new Scanner(System.in);
-		
+		Scanner sc;
+		int i;
+
+		launch_cmd = System.getProperty("sun.java.command");
+		System.out.printf("\nprogram name: %s\n", launch_cmd);
+		System.out.printf("\nprogram name: %s\n", launch_cmd.split(" ")[0]);
+		System.out.printf("Nombre d'arguments du programme: %d\n", Args.length);
+		i = 0;
+		if (Args.length >0)
+		{
+			while (i< Args.length)
+			{
+				System.out.printf("\t[%2d]= %s\n", i, Args[i]);
+				i++;
+			}
+		}
+		else
+			System.out.printf("\t(null)\n");
+		System.out.printf("\n");
+
+		if (Args.length != 2 && Args.length != 0)
+			throw new IllegalArgumentException("invalid input (should be either 0 or 2 input)");
 		System.out.printf("Nous allons calculer la moyenne de deux nombres.\n");
+		sc = new Scanner(System.in);
 		n1 = scan_double(sc, "entrez n1");
 		n2 = scan_double(sc, "entrez n2");
+		sc.close();
 		m = (n1 + n2) / 2;
-		System.out.printf("La moyenne de ces deux nombre est de %.2f", m);
+		System.out.printf("La moyenne de ces deux nombre est de %.2f\n", m);
 	}
 }
