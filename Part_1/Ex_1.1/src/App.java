@@ -2,6 +2,16 @@ import java.util.Scanner;
 
 class App
 {
+	public static void scan_pressEnter(Scanner sc, String prompt)
+	{
+		if (sc == null)
+			throw new IllegalArgumentException("invalid Scanner");
+		if (prompt == null || prompt.equals(""))
+			throw new IllegalArgumentException("invalid prompt");
+		System.out.printf("%s\n\t > ", prompt);
+		sc.nextLine();
+	}
+
 	public static double scan_double(Scanner sc, String prompt)
 	{
 		double r;
@@ -18,6 +28,7 @@ class App
 			sc.next();
 		}
 		r = sc.nextDouble();
+		sc.nextLine();
 		return (r);
 	}
 
@@ -31,8 +42,8 @@ class App
 		int i;
 
 		launch_cmd = System.getProperty("sun.java.command");
-		System.out.printf("\nprogram name: %s\n", launch_cmd);
-		System.out.printf("\nprogram name: %s\n", launch_cmd.split(" ")[0]);
+		System.out.printf("\ncommand: %s\n", launch_cmd);
+		System.out.printf("program name: %s\n", launch_cmd.split(" ")[0]);
 		System.out.printf("Nombre d'arguments du programme: %d\n", Args.length);
 		i = 0;
 		if (Args.length >0)
@@ -53,8 +64,9 @@ class App
 		sc = new Scanner(System.in);
 		n1 = scan_double(sc, "entrez n1");
 		n2 = scan_double(sc, "entrez n2");
-		sc.close();
 		m = (n1 + n2) / 2;
 		System.out.printf("La moyenne de ces deux nombre est de %.2f\n", m);
+		scan_pressEnter(sc, "press ENTER to quit.");
+		sc.close();
 	}
 }
