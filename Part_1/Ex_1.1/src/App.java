@@ -22,14 +22,19 @@ class App
 		if (prompt == null || prompt.equals(""))
 			throw new IllegalArgumentException("invalid prompt");
 		System.out.printf("%s\n\t > ", prompt);
-		while(!sc.hasNextDouble())
+		while (true)
 		{
-			System.out.printf("%s\n\t > ", "expects type: double");
-			sc.next();
+			String line = sc.nextLine();
+			try
+			{
+				r = Double.parseDouble(line);
+				return (r);
+			}
+			catch (NumberFormatException e)
+			{
+				System.out.printf("%s\n\t > ", "expects type: double");
+			}
 		}
-		r = sc.nextDouble();
-		sc.nextLine();
-		return (r);
 	}
 
 	public static void program_prompt(String Args[])
