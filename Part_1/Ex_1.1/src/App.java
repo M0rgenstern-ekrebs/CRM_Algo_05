@@ -38,7 +38,8 @@ class App
 		int i;
 
 		launch_cmd = System.getProperty("sun.java.command");
-		System.out.printf("\ncommand: %s\n", launch_cmd);
+		System.out.printf("\u001B[34m");
+		System.out.printf("\nlaunched with: `%s`\n", launch_cmd);
 		System.out.printf("program name: %s\n", launch_cmd.split(" ")[0]);
 		System.out.printf("Nombre d'arguments du programme: %d\n", Args.length);
 		i = 0;
@@ -46,13 +47,19 @@ class App
 		{
 			while (i< Args.length)
 			{
-				System.out.printf("\t[%2d]= %s\n", i, Args[i]);
+				System.out.printf("\t[%02d]= `%s`\n", i, Args[i]);
 				i++;
 			}
 		}
 		else
 			System.out.printf("\t(null)\n");
-		System.out.printf("\n");
+		System.out.printf("\u001B[0m\n");
+	}
+
+	public static void print_err(String msg)
+	{
+		StackTraceElement e = Thread.currentThread().getStackTrace()[2];
+		System.err.printf("\u001B[31mError: \u001B[33m%s:%s:\u001B[37m %s", e.getFileName(), e.getLineNumber(), msg);
 	}
 
 	public static void main(String Args[])
@@ -61,17 +68,43 @@ class App
 		double n2;
 		double m;
 		Scanner sc;
+		final String str_usage = "\u001B[33mUsage: Java App [<double1> <double2>]\u001B[37m";
 
 		program_prompt(Args);
 		if (Args.length != 2 && Args.length != 0)
-			throw new IllegalArgumentException("invalid input (should be either 0 or 2 input)");
-		System.out.printf("Nous allons calculer la moyenne de deux nombres.\n");
+		{
+			System.out.printf("%s\n", str_usage);
+			System.exit(1);
+		}
 		sc = new Scanner(System.in);
-		n1 = scan_double(sc, "entrez n1");
-		n2 = scan_double(sc, "entrez n2");
+		System.out.printf("Nous allons calculer la moyenne de deux nombres.\n");
+		if (Args.length == 0)
+		{
+			n1 = scan_double(sc, "entrez n1");
+			n2 = scan_double(sc, "entrez n2");
+		}
+		else
+		{
+			n1 = -1;
+			n2 = -1;
+			try
+			{
+				n1 = Double.parseDouble(Args[0]);
+				n2 = Double.parseDouble(Args[1]);
+			}
+			catch (NumberFormatException e)
+			{
+				print_err("when using arguments, they must be valid doubles.\n");
+				System.out.printf("%s\n", str_usage);
+				sc.close();
+				System.exit(1);
+			}
+		}
+		System.out.printf("Les nombres sont %.2f et %.2f.\n", n1, n2);
 		m = (n1 + n2) / 2.0;
 		System.out.printf("La moyenne de ces deux nombre est de %.2f\n", m);
 		scan_pressEnter(sc, "press ENTER to quit.");
 		sc.close();
+		System.exit(0);
 	}
 }
