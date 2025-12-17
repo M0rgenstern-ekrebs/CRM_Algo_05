@@ -1,6 +1,7 @@
+package test;
 import java.util.Scanner;
 
-public class Scan {
+public final class Scan {
 	public static void scan_pressEnter(Scanner sc, String prompt)
 	{
 		if (sc == null)
@@ -15,60 +16,75 @@ public class Scan {
 	{
 		double r;
 
-		r = -1;
+		r = (-1);
 		if (sc == null)
 			throw new IllegalArgumentException("invalid Scanner");
 		if (prompt == null || prompt.equals(""))
 			throw new IllegalArgumentException("invalid prompt");
 		System.out.printf("%s\n\t > ", prompt);
-		while(!sc.hasNextDouble())
+		while (true)
 		{
-			System.out.printf("%s\n\t > ", "expects type: double");
-			sc.next();
+			String line = sc.nextLine();
+			try
+			{
+				r = Double.parseDouble(line);
+				return (r);
+			}
+			catch (NumberFormatException e)
+			{
+				System.out.printf("%s\n\t > ", "expects type: double");
+			}
 		}
-		r = sc.nextDouble();
-		sc.nextLine();
-		return (r);
 	}
 
-	public static int scan_int(Scanner sc, String prompt)
+	public static double scan_int(Scanner sc, String prompt)
 	{
 		int r;
 
-		r = -1;
+		r = (-1);
 		if (sc == null)
 			throw new IllegalArgumentException("invalid Scanner");
 		if (prompt == null || prompt.equals(""))
 			throw new IllegalArgumentException("invalid prompt");
 		System.out.printf("%s\n\t > ", prompt);
-		while(!sc.hasNextDouble())
+		while (true)
 		{
-			System.out.printf("%s\n\t > ", "expects type: int");
-			sc.next();
+			String line = sc.nextLine();
+			try
+			{
+				r = Integer.parseInt(line);
+				return (r);
+			}
+			catch (NumberFormatException e)
+			{
+				System.out.printf("%s\n\t > ", "expects type: int");
+			}
 		}
-		r = sc.nextInt();
-		sc.nextLine();
-		return (r);
 	}
 
-	public static float scan_float(Scanner sc, String prompt)
+	public static double scan_float(Scanner sc, String prompt)
 	{
 		float r;
 
-		r = -1;
+		r = (-1);
 		if (sc == null)
 			throw new IllegalArgumentException("invalid Scanner");
 		if (prompt == null || prompt.equals(""))
 			throw new IllegalArgumentException("invalid prompt");
 		System.out.printf("%s\n\t > ", prompt);
-		while(!sc.hasNextFloat())
+		while (true)
 		{
-			System.out.printf("%s\n\t > ", "expects type: float");
-			sc.next();
+			String line = sc.nextLine();
+			try
+			{
+				r = Float.parseFloat(line);
+				return (r);
+			}
+			catch (NumberFormatException e)
+			{
+				System.out.printf("%s\n\t > ", "expects type: float");
+			}
 		}
-		r = sc.nextFloat();
-		sc.nextLine();
-		return (r);
 	}
 
 	public static String scan_line(Scanner sc, String prompt)
