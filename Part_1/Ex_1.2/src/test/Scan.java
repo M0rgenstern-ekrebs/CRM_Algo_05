@@ -8,7 +8,7 @@ public final class Scan {
 			throw new IllegalArgumentException("invalid Scanner");
 		if (prompt == null || prompt.equals(""))
 			throw new IllegalArgumentException("invalid prompt");
-		System.out.printf("%s\n\t > ", prompt);
+		System.out.printf("%s ", prompt);
 		sc.nextLine();
 	}
 
