@@ -4,6 +4,7 @@ public final class Ansi
 {
 	private Ansi() {} //empêche l'instanciation
 
+	public static final String	RESET				= "\u001B[0m";
 	public static final String	SANE				= "\u001B[0m";
 
 	public static final String	HIGH_INTENSITY		= "\u001B[1m";

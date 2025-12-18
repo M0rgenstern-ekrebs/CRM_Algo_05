@@ -37,7 +37,7 @@ public final class Scan {
 		}
 	}
 
-	public static double scan_int(Scanner sc, String prompt)
+	public static int scan_int(Scanner sc, String prompt)
 	{
 		int r;
 
@@ -62,7 +62,7 @@ public final class Scan {
 		}
 	}
 
-	public static double scan_float(Scanner sc, String prompt)
+	public static float scan_float(Scanner sc, String prompt)
 	{
 		float r;
 
