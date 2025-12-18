@@ -1,6 +1,6 @@
 package test;
 import static test.Ansi.*;
-import static test.Scan.*; //try me !
+import static test.Scan.*;
 import static test.Debug.*;
 import java.util.Scanner;
 
