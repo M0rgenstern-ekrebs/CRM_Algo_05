@@ -2,6 +2,7 @@ package test;
 import static test.Ansi.*;
 import static test.Scan.*;
 import static test.Debug.*;
+import static test.ProgramOption.*;
 import static java.lang.System.*;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
@@ -25,14 +26,14 @@ public final class App {
 		for (String arg : Args)
 		{
 			if (arg.equals("-v"))
-				program_options[0] = true; //TODO: enum pour au moins DEBUG et VERBOSE
+				program_options[DEBUG] = true; //TODO: enum pour au moins DEBUG et VERBOSE
 			else
 			{
 				argv.add(arg);
 				argc++;
 			}
 		}
-		if (program_options[0] == true)
+		if (program_options[DEBUG] == true)
 			print_program_prompt(Args);
 		if (argc != 0 && argc != 1) //program option verificator: v1
 		{
@@ -50,7 +51,7 @@ public final class App {
 			}
 			catch (NumberFormatException e)
 			{
-				print_err("Arg must be a valid integer");
+				print_err("Arg must be a valid float");
 				print_usg("[float]");
 				exit(1);
 			}
