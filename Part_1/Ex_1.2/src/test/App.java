@@ -29,7 +29,7 @@ public final class App {
 			{
 				r = Integer.parseInt(Args[0]);
 			}
-			catch (Exception e)
+			catch (NumberFormatException e)
 			{
 				print_err("Arg must be a valid integer\n");
 				System.out.printf(YELLOW+"Usage: App [<float radius>]\n"+RESET);
@@ -43,7 +43,7 @@ public final class App {
 			{
 				r = scan_float(sc, "please enter radius of the shere in cm");
 			}
-			catch (Exception e)
+			catch (IllegalArgumentException e)
 			{
 				sc.close();
 				System.exit(1);
