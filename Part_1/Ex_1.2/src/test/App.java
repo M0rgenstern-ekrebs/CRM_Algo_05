@@ -26,7 +26,7 @@ public final class App {
 		for (String arg : Args)
 		{
 			if (arg.equals("-v"))
-				program_options[DEBUG] = true; //TODO: enum pour au moins DEBUG et VERBOSE
+				program_options[DEBUG] = true;
 			else
 			{
 				argv.add(arg);

@@ -1,4 +1,5 @@
 import java.util.Scanner;
+import java.text.DecimalFormat;
 
 class App
 {
@@ -74,6 +75,7 @@ class App
 		double m;
 		Scanner sc;
 		final String str_usage = "\u001B[33mUsage: Java App [<double1> <double2>]\u001B[37m";
+		DecimalFormat df = new DecimalFormat("#.##");
 
 		program_prompt(Args);
 		if (Args.length != 2 && Args.length != 0)
@@ -105,9 +107,9 @@ class App
 				System.exit(1);
 			}
 		}
-		System.out.printf("Les nombres sont %.2f et %.2f.\n", n1, n2);
+		System.out.printf("Les nombres sont %s et %s.\n", df.format(n1), df.format(n2));
 		m = (n1 + n2) / 2.0;
-		System.out.printf("La moyenne de ces deux nombre est de %.2f\n", m);
+		System.out.printf("La moyenne de ces deux nombre est de %s\n", df.format(m));
 		scan_pressEnter(sc, "press ENTER to quit.");
 		sc.close();
 		System.exit(0);
