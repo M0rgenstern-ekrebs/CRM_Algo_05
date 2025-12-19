@@ -1,7 +1,7 @@
-MAIN = App
+MAIN = test/App
 OUT_DIR = out
 
-SOURCES = $(shell find src -name "*.java")
+SOURCES = $(shell find src/** -name "*.java")
 JFLAGS = -Xlint:all -Werror
 
 all: clear $(OUT_DIR)/classes
@@ -18,3 +18,5 @@ clean:
 
 clear:
 	clear
+
+re: clean all
