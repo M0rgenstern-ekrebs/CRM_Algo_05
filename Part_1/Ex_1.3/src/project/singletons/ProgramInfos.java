@@ -1,4 +1,4 @@
-package project;
+package project.singletons;
 
 import static static_imports.debug.Debug.*;
 import static java.lang.System.*;
