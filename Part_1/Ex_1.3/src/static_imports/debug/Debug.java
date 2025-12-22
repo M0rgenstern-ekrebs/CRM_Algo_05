@@ -1,7 +1,5 @@
 package static_imports.debug;
 import static static_imports.defines.Ansi.*;
-import static static_imports.defines.ProgramOption.*;
-import java.util.ArrayList;
 import static java.lang.System.*;
 
 public final class Debug {
@@ -9,12 +7,6 @@ public final class Debug {
 
 	//sets argv[] and arg_options[];
 	//(argv without the options)
-	public static void program_ini(String Args[], int argc, String argv[], boolean arg_options[])
-	{
-
-	}
-
-
 	public static void print_err(String msg)
 	{
 		StackTraceElement e = Thread.currentThread().getStackTrace()[2];

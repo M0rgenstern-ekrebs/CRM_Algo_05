@@ -1,10 +1,10 @@
-import static static_imports.debug.Debug.*;
+import project.ProgramInfos;
 
 public class Main {
 	public static void main(String Args[])
 	{
-
-
-		program_ini(Args, argc, argv, arg_options);
+		final ProgramInfos prog;
+		
+		prog = ProgramInfos.getInstance(Args);
 	}
 }
