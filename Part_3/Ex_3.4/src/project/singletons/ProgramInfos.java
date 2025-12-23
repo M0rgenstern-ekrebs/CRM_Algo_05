@@ -1,0 +1,115 @@
+package project.singletons;
+
+import static static_imports.debug.Debug.*;
+import static java.lang.System.*;
+import static static_imports.defines.Ansi.BLUE;
+import static static_imports.defines.Ansi.RESET;
+import static static_imports.defines.ProgramOption.*;
+import java.util.ArrayList;
+
+/**
+ * Singleton class for managing program information and options.
+ *
+ * This class stores and processes command-line arguments, tracks program options,
+ * and provides methods for initialization and debugging output. The constructor is
+ * private to enforce the singleton pattern.
+ */
+public class ProgramInfos {
+	private static ProgramInfos instance;
+	public int argc;
+	public String argv[];
+	public boolean argop[];
+	public String usage;
+
+	private ProgramInfos(String Args[], String str_usage)
+	{
+		ArrayList<String> tmp_argv;
+	
+		if (instance != null)
+			return ;
+		if (str_usage == null)
+			usage = "";
+		else
+			usage = new String(str_usage);
+		tmp_argv = new ArrayList<>();
+		argop = new boolean[MAX_OPTIONS]; //program options extractor: V1
+		argc = 0;
+		for (String arg : Args)
+		{
+			if (arg.equals("-debug"))
+				argop[DEBUG] = true;
+			else if (arg.equals("-v"))
+				argop[VERBOSE] = true;
+			else if (arg.equals("-help"))
+				argop[HELP] = true;
+			else
+			{
+				tmp_argv.add(arg);
+				argc++;
+			}
+		}
+		argv = tmp_argv.toArray(new String[0]);
+		if (argop[DEBUG] == true)
+			print_program_prompt(Args);
+	}
+
+	/**
+     * Returns the singleton instance of ProgramInfos.
+     *
+     * @return The singleton instance.
+     * @throws IllegalStateException if the instance has not been initialized.
+     */
+	public static ProgramInfos getInstance()
+	{
+        if (instance == null)
+		{
+            throw new IllegalStateException("ProgramInfos not initialized");
+        }
+        return instance;
+    }
+
+	/**
+     * Returns the singleton instance of ProgramInfos, initializing it if necessary.
+     *
+     * @param Args   The command-line arguments.
+     * @param usage  The usage string.
+     * @return       The singleton instance.
+     */
+	public static ProgramInfos getInstance(String[] Args, String usage)
+	{
+        if (instance == null)
+		{
+            instance = new ProgramInfos(Args, usage);
+        }
+        return instance;
+    }
+
+	/**
+     * Prints a detailed prompt about the program launch and arguments.
+     *
+     * @param Args The command-line arguments.
+     */
+	public static void print_program_prompt(String Args[])
+	{
+		String launch_cmd;
+		int i;
+		
+		launch_cmd = getProperty("sun.java.command");
+		out.printf(BLUE+"\nlaunched with: `"+RESET+"%s"+BLUE+"`\n", launch_cmd);
+		out.printf("program name: %s\n", launch_cmd.split(" ")[0]);
+		out.printf("Nombre d'arguments du programme: %d\n", Args.length);
+		i = 0;
+		if (Args.length >0)
+		{
+			while (i< Args.length)
+			{
+				out.printf("\t[%02d]= `%s`\n", i, Args[i]);
+				i++;
+			}
+		}
+		else
+			out.printf("\t(null)\n");
+		out.printf(RESET);
+	}
+}
+
