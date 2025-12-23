@@ -9,18 +9,21 @@ import java.util.ArrayList;
 
 public class ProgramInfos {
 	private static ProgramInfos instance;
-	public static int argc;
-	public static String argv[];
-	public static boolean argop[];
+	public int argc;
+	public String argv[];
+	public boolean argop[];
+	public String usage;
 
-	private ProgramInfos(String Args[])
+	private ProgramInfos(String Args[], String str_usage)
 	{
-		if (instance != null)
-		{
-			return ;
-		}
 		ArrayList<String> tmp_argv;
-
+	
+		if (instance != null)
+			return ;
+		if (str_usage == null)
+			usage = "";
+		else
+			usage = new String(str_usage);
 		tmp_argv = new ArrayList<>();
 		argop = new boolean[MAX_OPTIONS]; //program options extractor: V1
 		argc = 0;
@@ -41,19 +44,22 @@ public class ProgramInfos {
 		argv = tmp_argv.toArray(new String[0]);
 		if (argop[DEBUG] == true)
 			print_program_prompt(Args);
-		if (argc != 0 && argc != 1) //program option verificator: v1
-		{
-			print_err("bad args number");
-			print_usg("[float]");
-			exit(1);
-		}
 	}
 
-	public static ProgramInfos getInstance(String[] Args)
+	public static ProgramInfos getInstance()
 	{
         if (instance == null)
 		{
-            instance = new ProgramInfos(Args);
+            throw new IllegalStateException("ProgramInfos not initialized");
+        }
+        return instance;
+    }
+
+	public static ProgramInfos getInstance(String[] Args, String usage)
+	{
+        if (instance == null)
+		{
+            instance = new ProgramInfos(Args, usage);
         }
         return instance;
     }

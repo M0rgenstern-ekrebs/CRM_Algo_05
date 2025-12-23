@@ -1,4 +1,4 @@
-MAIN = test/App
+MAIN = Main
 OUT_DIR = out
 
 SOURCES = $(shell find src/** -name "*.java")
