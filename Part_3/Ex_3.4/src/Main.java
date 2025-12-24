@@ -64,14 +64,20 @@ public class Main
 		}
 		f = 0;
 		i = 0;
+
+		if (str.charAt(str.length()-1) != '.')
+			out.println("la str ne se termine "+BLUE+"pas "+RESET+"par un point.");
+
 		if (str.isEmpty() || str.length() == 1 && str.charAt(0) == '.')
 			out.println("la str est"+BLUE+" vide"+RESET+".");
+
 		while(i < str.length())
 		{
 			if (str.charAt(i) == c)
 				f++;
 			i++;
 		}
+		
 		out.println("le char \'"+BLUE+c+RESET+"\' apparait "+BLUE+f+RESET+" fois dans la str \""+BLUE+str+RESET+"\".");
 	}
 }
