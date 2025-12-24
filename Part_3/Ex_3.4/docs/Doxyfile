@@ -24,13 +24,18 @@
 # Optional: Use the sidebar-only layout for a more compact appearance.
 # This hides the top titlebar and uses the sidebar for navigation.
 # Requires GENERATE_TREEVIEW = YES.
-HTML_EXTRA_STYLESHEET 	= doc/doxygen-awesome-css/doxygen-awesome.css \ doc/doxygen-awesome-css/doxygen-awesome-sidebar-only.css
 
+HTML_EXTRA_STYLESHEET   = 
+HTML_EXTRA_STYLESHEET 	+= doxygen-awesome.css
+HTML_EXTRA_STYLESHEET 	+= doxygen-awesome-sidebar-only.css
+HTML_EXTRA_STYLESHEET 	+= doxygen-awesome-sidebar-only-darkmode-toggle.css
 
-HTML_EXTRA_FILES 		= doc/doxygen-awesome-css/doxygen-awesome-darkmode-toggle.js
-HTML_HEADER            	= header.html
-HTML_COLORSTYLE			= LIGHT
-FULL_SIDEBAR 			= YES
+#HTML_EXTRA_FILES 		=
+#HTML_EXTRA_FILES 		+= doxygen-awesome-darkmode-toggle.js
+
+HTML_COLORSTYLE 		= DARK
+#HTML_HEADER            = header.html
+#FULL_SIDEBAR 			= NO
 
 
 # This tag specifies the encoding used for all characters in the configuration
